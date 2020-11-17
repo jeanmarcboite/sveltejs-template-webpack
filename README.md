@@ -127,11 +127,9 @@ npm i --save-dev tailwindcss
 npx -p @storybook/cli sb init --type svelte  --use-npm
 ```
 
-- add postcss to .storybook/main.js
+- add postcss to .storybook/main.js, via webpackFinal
 
 ```javascript
-const sveltePreprocess = require('svelte-preprocess')
-
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
@@ -141,7 +139,7 @@ module.exports = {
     )
     svelteLoader.options = {
       ...svelteLoader.options,
-      preprocess: sveltePreprocess({
+      preprocess: require('svelte-preprocess')({
         postcss: {
           plugins: [
             require('tailwindcss'),

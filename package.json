@@ -5,6 +5,10 @@
     "@babel/core": "^7.12.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/svelte": "^6.0.28",
     "autoprefixer": "^10.0.2",
     "babel-loader": "^8.2.1",
     "cross-env": "^5.2.0",
@@ -14,10 +18,11 @@
     "postcss-cli": "^8.2.0",
     "postcss-import": "12",
     "postcss-nested": "^5.0.1",
+    "react-is": "^17.0.1",
     "serve": "^11.0.0",
     "style-loader": "^0.23.1",
-    "svelte": "^3.0.0",
-    "svelte-loader": "2.13.3",
+    "svelte": "^3.29.7",
+    "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^4.5.2",
     "tailwindcss": "^1.9.6",
     "webpack": "^4.30.0",
@@ -26,6 +31,9 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack-dev-server --content-base public"
-  }
+    "dev": "webpack-dev-server --content-base public",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
+  },
+  "dependencies": {}
 }
