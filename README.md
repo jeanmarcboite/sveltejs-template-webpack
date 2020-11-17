@@ -168,6 +168,13 @@ module.exports = {
 />
 ```
 
+## Install electron
+
+```bash
+npm i electron
+npm i --save-dev npm-run-all
+```
+
 _Note that you will need to have [Node.js](https://nodejs.org) installed._
 
 ## Get started
