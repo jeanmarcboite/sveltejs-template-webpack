@@ -1,11 +1,13 @@
 # svelte app
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
+This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/jeanmarcboite/sveltejs-template-webpack.
+
+It is a modified version of https://github.com/sveltejs/template-webpack
 
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-npx degit sveltejs/template-webpack svelte-app
+npx degit jeanmarcboite/sveltejs-template-webpack svelte-app
 cd svelte-app
 ```
 
