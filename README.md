@@ -24,6 +24,16 @@ npm i --save-dev autoprefixer postcss postcss-cli postcss-import@12 postcss-nest
 npm i --save-dev tailwindcss
 ```
 
+- create a file src/Tailwind.svelte
+
+```javascript
+<style global lang="postcss">
+  /* only apply purgecss on utilities, per Tailwind docs */ /* purgecss start
+  ignore */ @tailwind base; @tailwind components; /* purgecss end ignore */
+  @tailwind utilities;
+</style>
+```
+
 - modify App.svelte
 
 ```javascript
