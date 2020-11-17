@@ -9,8 +9,118 @@ npx degit sveltejs/template-webpack svelte-app
 cd svelte-app
 ```
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+## Install babel
 
+```bash
+npm i --save-dev @babel/core @babel/plugin-proposal-class-properties @babel/preset-env
+npm i --save-dev babel-loader
+npm i --save-dev svelte-preprocess
+```
+
+## Install tailwind
+
+```bash
+npm i --save-dev autoprefixer postcss postcss-cli postcss-import@12 postcss-nested
+npm i --save-dev tailwindcss
+```
+
+- modify App.svelte
+
+```javascript
+<script>
+  import Tailwind from "./Tailwind.svelte";
+
+  export let name;
+</script>
+
+<style lang="postcss">
+  main {
+    text-align: center;
+    padding: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: #ff3e00;
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 100;
+  }
+
+  @media (min-width: 640px) {
+    main {
+      max-width: none;
+
+      .tw {
+        @apply font-sans text-lg text-center text-green-800;
+      }
+    }
+  }
+</style>
+
+<Tailwind />
+<main>
+  <h1>Hello {name}!</h1>
+  <p class="tw">tailwind included<span class="text-red-800">!</span></p>
+  <p>
+    Visit the
+    <a href="https://svelte.dev/tutorial">Svelte tutorial</a>
+    to learn how to build Svelte apps.
+  </p>
+</main>
+```
+
+## Install storybook
+
+- run cli
+
+```bash
+npx -p @storybook/cli sb init --type svelte  --use-npm
+```
+
+- add postcss to .storybook/main.js
+
+```javascript
+const sveltePreprocess = require('svelte-preprocess')
+
+module.exports = {
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
+  webpackFinal: async (config) => {
+    const svelteLoader = config.module.rules.find(
+      (r) => r.loader && r.loader.includes('svelte-loader'),
+    )
+    svelteLoader.options = {
+      ...svelteLoader.options,
+      preprocess: sveltePreprocess({
+        postcss: {
+          plugins: [
+            require('tailwindcss'),
+            require('autoprefixer'),
+            require('postcss-nested'),
+          ],
+        },
+      }),
+    }
+
+    return config
+  },
+}
+```
+
+- preload tailwindcss in preview-head.html
+
+```javascript
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.6/tailwind.min.css"
+  integrity="sha512-l7qZAq1JcXdHei6h2z8h8sMe3NbMrmowhOl+QkP3UhifPpCW2MC4M0i26Y8wYpbz1xD9t61MLT9L1N773dzlOA=="
+  crossorigin="anonymous"
+/>
+```
+
+_Note that you will need to have [Node.js](https://nodejs.org) installed._
 
 ## Get started
 
@@ -28,7 +138,6 @@ npm run dev
 ```
 
 Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
-
 
 ## Deploying to the web
 
