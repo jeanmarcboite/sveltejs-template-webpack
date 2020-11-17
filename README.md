@@ -81,6 +81,44 @@ npm i --save-dev tailwindcss
 </main>
 ```
 
+- add rules to webpack.config.js
+
+```javascript
+{
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties'],
+          },
+        },
+      },
+
+      {
+        test: /\.svelte$/,
+        use: {
+          loader: 'svelte-loader',
+          options: {
+            emitCss: true,
+            hotReload: true,
+            preprocess: require('svelte-preprocess')({
+              // https://github.com/kaisermann/svelte-preprocess/#user-content-options
+              sourceMap: !prod,
+              postcss: {
+                plugins: [
+                  require('tailwindcss'),
+                  // require("autoprefixer"),
+                  require('postcss-nested'),
+                ],
+              },
+            }),
+          },
+        },
+      },
+```
+
 ## Install storybook
 
 - run cli
