@@ -172,7 +172,7 @@ module.exports = {
 
 ```bash
 npm i electron
-npm i --save-dev npm-run-all
+npm i chokidar cross-env npm-run-all --save-dev
 ```
 
 _Note that you will need to have [Node.js](https://nodejs.org) installed._
