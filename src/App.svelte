@@ -33,7 +33,7 @@
 <Tailwind />
 <main>
   <h1>Hello {name}!</h1>
-  <p class="tw">tailwind included<span class="text-red-800">!</span></p>
+  <p class="tw">tailwind included<span class="text-red-800">?</span></p>
   <p>
     Visit the
     <a href="https://svelte.dev/tutorial">Svelte tutorial</a>

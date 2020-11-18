@@ -15,8 +15,12 @@ module.exports = {
     extensions: ['.mjs', '.js', '.svelte'],
     mainFields: ['svelte', 'browser', 'module', 'main'],
   },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'public'),
+    writeToDisk: true,
+  },
   output: {
-    path: path.resolve(__dirname, 'public', 'build'),
+    path: path.resolve(__dirname, 'public'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
   },
